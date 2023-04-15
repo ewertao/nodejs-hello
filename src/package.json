@@ -1,0 +1,25 @@
+{
+    "name": "ewertonpinheiro-nodejs-hello-world-app",
+    "version": "1.0.0",
+    "description": "My First NodeJS Project: Hello World",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "test": "mocha index.test.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ewertao/DevOpsLab-HelloWorld"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.18.2",
+      "chai":"4.3.7",
+      "chai-http": "4.3.0",
+      "mocha":"10.2.0",
+      "docker":"1.0.0",
+      "aws-sdk": "2.1358.0"
+    }
+  }
+
