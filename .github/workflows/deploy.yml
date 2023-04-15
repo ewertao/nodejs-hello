@@ -22,10 +22,10 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 19
+      env:
+       CI: true
     - run: cd src && npm install
-    - run: cd src && CI=true npm test 
-#      env:
-#       CI: true
+    - run: cd src && npm test 
     
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
