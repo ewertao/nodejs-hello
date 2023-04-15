@@ -23,7 +23,7 @@ jobs:
       with:
         node-version: 19
     - run: cd src && npm install
-    - run: cd src && npm test 
+    - run: CI=true cd src && npm test 
       env:
         CI: true
     
