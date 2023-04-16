@@ -18,12 +18,12 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
 
-#    - name: Validating Node.js
-#      uses: actions/setup-node@v3
-#      with:
-#        node-version: 19
-#    - run: cd src && npm install
-#    - run: cd src && npm test 
+    - name: Validating Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 19
+    - run: cd src && npm install
+    - run: cd src && npm test 
 #      env:
 #       CI: true
     
