@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nodejs
-          image: ewertao/nodejs-hello:latest
+          image: 777156806021.dkr.ecr.eu-central-1.amazonaws.com/hello:${TAG}
           ports:
             - containerPort: 8080
           env:
