@@ -53,6 +53,7 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
   deploy:
+    needs: build
     
     name: Deploy
     runs-on: ubuntu-latest
@@ -74,6 +75,6 @@ jobs:
            IMAGE_TAG: ${{ github.sha }}
            INSTANCE_ID: i-05cf68c635504fffd
          run: |
-           aws ssm send-command --doccument-name "AWS-RunShellScript" --instanceids $INSTANCE_ID --parameters '{"commands": ["sed 's/_TAG_/$IMAGE_TAG/g' /tmp/deployment.yml > /tmp/deploy.yml", "kubectl apply -f /tmp/deploy.yml"]}' 
+           aws ssm send-command --document-name "AWS-RunShellScript" --instanceids $INSTANCE_ID --parameters '{"commands": ["sed 's/_TAG_/$IMAGE_TAG/g' /tmp/deployment.yml > /tmp/deploy.yml", "kubectl apply -f /tmp/deploy.yml"]}' 
     
     
