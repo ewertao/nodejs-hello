@@ -76,5 +76,3 @@ jobs:
            INSTANCE_ID: i-05cf68c635504fffd
          run: |
            aws ssm send-command --document-name "AWS-RunShellScript" --instanceids $INSTANCE_ID --parameters '{"commands": ["sed 's/_TAG_/$IMAGE_TAG/g' /tmp/deployment.yml > /tmp/deploy.yml", "kubectl apply -f /tmp/deploy.yml"]}' 
-    
-    
