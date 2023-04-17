@@ -31,26 +31,15 @@ jobs:
     - run: cd src && npm test 
       env:
        CI: true
-    
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        role-to-assume: arn:aws:iam::777156806021:role/githubactionprovider-role
-        role-session-name: githubactionsprovider-role
-        aws-region: eu-central-1
 
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
-
-    - name: Build, tag, and push image to Amazon ECR
+    - name: Build and push Docker image
       env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: hello
-        IMAGE_TAG: ${{ github.sha }}
+       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./src/Dockerfile .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+       docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+       docker build -t docker.io/ewertao/nodejs-hello:latest .
+       docker push docker.io/ewertao/nodejs-hello:latest
 
   deploy:
     needs: build
@@ -75,4 +64,4 @@ jobs:
            IMAGE_TAG: ${{ github.sha }}
            INSTANCE_ID: i-0b042f3902b02f602
          run: |
-           aws ssm send-command --document-name "AWS-RunShellScript" --instance-ids $INSTANCE_ID --parameters '{"commands": ["sed 's/_TAG_/$IMAGE_TAG/g' /tmp/deployment.yml > /tmp/deploy.yml", "kubectl apply -f /tmp/deploy.yml"]}' 
+           aws ssm send-command --document-name "AWS-RunShellScript" --instance-ids $INSTANCE_ID --parameters '{"commands": ["export HOME=/", "kubectl apply -f /tmp/deployment.yml"]}' 

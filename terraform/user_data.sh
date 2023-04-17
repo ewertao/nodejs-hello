@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: nodejs
-          image: 777156806021.dkr.ecr.eu-central-1.amazonaws.com/hello:${{TAG}}
+          image: ewertao/nodejs-hello:latest
           ports:
             - containerPort: 8080
           env:
@@ -71,3 +71,6 @@ cp /.kube/config /home/ec2-user/.kube
 
 # Copia o arquivo de configuração kubeconfig para o usuário ssm-user
 cp /.kube/config /home/ssm-user/.kube
+
+# Recurso técnico alternativo
+cd / && export HOME=/
