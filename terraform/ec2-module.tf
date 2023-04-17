@@ -10,8 +10,8 @@ module "ec2_instance" {
   monitoring             = true
   vpc_security_group_ids = ["sg-088391bb7d9535cf0"]
   subnet_id              = "subnet-0dbbc5a928adacdb7"
-  user_data              = "${file("user_data.sh")}"
-  #instanceprofile-add aws-ssm-mgmt-core
+  user_data              = file("user_data.sh")
+  iam_instance_profile   = "helloworld-ssm"
 
   tags = {
     Terraform   = "true"

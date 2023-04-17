@@ -58,7 +58,7 @@ yum install curl --skip-broken
 
 # Baixa a versão estável mais recente do kubectl e o instala
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-./install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 # Cria uma pasta .kube para o usuário ec2-user
 mkdir -p /home/ec2-user/.kube

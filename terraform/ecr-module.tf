@@ -3,7 +3,7 @@ module "ecr" {
 
   repository_name = "hello"
 
-  repository_read_write_access_arns = ["arn:aws:iam::777156806021:user/githubactions","arn:aws:iam::777156806021:role/githubactionprovider-role"]
+  repository_read_write_access_arns = ["arn:aws:iam::777156806021:user/githubactions", "arn:aws:iam::777156806021:role/githubactionprovider-role"]
   repository_lifecycle_policy = jsonencode({
     rules = [
       {
