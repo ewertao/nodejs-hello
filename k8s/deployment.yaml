@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nodejs
-          image: 777156806021.dkr.ecr.eu-central-1.amazonaws.com/hello:${TAG}
+          image: 777156806021.dkr.ecr.eu-central-1.amazonaws.com/hello:_TAG_
           ports:
             - containerPort: 8080
           env:
