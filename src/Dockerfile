@@ -1,7 +1,7 @@
 FROM node:19.0.0
 WORKDIR /app
-COPY ./scr/package*.json ./
+COPY src/package*.json /app/
 RUN npm install
-COPY ./scr .
+COPY src /app/
 EXPOSE 8080
 CMD [ "npm", "start" ]
