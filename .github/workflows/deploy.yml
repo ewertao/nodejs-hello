@@ -60,7 +60,7 @@ jobs:
            aws-region: eu-central-1
            
        - name: Deploy K8s 
-         uses: aws-actions/run-command@v1
+         uses: aws-actions/run-command@v2
          with:
            comment: Pull Docker image on EC2 instance
            document-name: AWS-RunShellScript
