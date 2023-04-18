@@ -60,8 +60,13 @@ jobs:
            aws-region: eu-central-1
            
        - name: Deploy K8s 
-         env:
-           IMAGE_TAG: ${{ github.sha }}
-           INSTANCE_ID: i-040a92e9ab6973752
-         run: |
-           aws ssm send-command --document-name "AWS-RunShellScript" --instance-ids $INSTANCE_ID --parameters '{"commands": ["export HOME=/", "kubectl apply -f /tmp/deployment.yml"]}' 
+         uses: aws-actions/run-command@v1
+         with:
+           comment: Pull Docker image on EC2 instance
+           document-name: AWS-RunShellScript
+           instance-id: i-040a92e9ab6973752
+           parameters: |
+             docker pull ewertao/nodejs-hello:latest
+             export HOME=/
+             kubectl apply -f /tmp/deployment.yml
+           region: eu-central-1
