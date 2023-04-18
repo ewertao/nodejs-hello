@@ -1,10 +1,9 @@
-module "public_ecr" {
+module "ecr" {
   source = "terraform-aws-modules/ecr/aws"
 
   repository_name = "nodejs-hello"
-  repository_type = "public"
 
-  repository_read_write_access_arns = ["arn:aws:iam::777156806021:user/githubactions"]
+  repository_read_write_access_arns = ["arn:aws:iam::777156806021:user/githubactions", "arn:aws:iam::777156806021:role/githubactionprovider-role"]
   repository_lifecycle_policy = jsonencode({
     rules = [
       {
@@ -22,15 +21,6 @@ module "public_ecr" {
       }
     ]
   })
-
-  public_repository_catalog_data = {
-    description       = "Docker container for some things"
-    about_text        = file("${path.module}/files/ABOUT.md")
-    usage_text        = file("${path.module}/files/USAGE.md")
-    operating_systems = ["Linux"]
-    architectures     = ["x86"]
-    logo_image_blob   = filebase64("${path.module}/files/clowd.png")
-  }
 
   tags = {
     Terraform   = "true"
