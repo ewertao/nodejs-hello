@@ -32,17 +32,19 @@ jobs:
       env:
        CI: true
     
-    - #name: Configure AWS credentials
-      #uses: aws-actions/configure-aws-credentials@v2
-      #with:
-      #  role-to-assume: arn:aws:iam::777156806021:role/githubactionprovider-role
-      #  role-session-name: githubactionsprovider-role
-      #  aws-region: us-east-1
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: arn:aws:iam::777156806021:role/githubactionprovider-role
+        role-session-name: githubactionsprovider-role
+        aws-region: us-east-1
 
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
-
+      with:
+        registry-type: public
+        
     - name: Build, tag, and push image to Amazon ECR
       run: |
         docker build -t public.ecr.aws/d0y1a6a0/nodejs-hello:latest -f ./src/Dockerfile .
