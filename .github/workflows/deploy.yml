@@ -38,7 +38,7 @@ jobs:
        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-       docker build -t docker.io/ewertao/nodejs-hello:latest -f src/Dockerfile
+       docker build -t docker.io/ewertao/nodejs-hello:latest -f src/Dockerfile .
        docker push docker.io/ewertao/nodejs-hello:latest
 
   deploy:
