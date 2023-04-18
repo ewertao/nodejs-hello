@@ -31,42 +31,30 @@ jobs:
     - run: cd src && npm test 
       env:
        CI: true
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: arn:aws:iam::777156806021:role/githubactionprovider-role
+        role-session-name: githubactionsprovider-role
+        aws-region: eu-central-1
 
-    - name: Build and push Docker image
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push image to Amazon ECR
       env:
-       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: nodejs-hello
+        IMAGE_TAG: ${{ github.sha }}
       run: |
-       docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-       docker build -t docker.io/ewertao/nodejs-hello:latest -f src/Dockerfile .
-       docker push docker.io/ewertao/nodejs-hello:latest
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./src/Dockerfile .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
   deploy:
     needs: build
     
     name: Deploy
     runs-on: ubuntu-latest
- 
-    steps:
-
-       - name: Check out code
-         uses: actions/checkout@v3
-         
-       - name: Configure AWS credentials
-         uses: aws-actions/configure-aws-credentials@v2
-         with:
-           role-to-assume: arn:aws:iam::777156806021:role/githubactionprovider-role
-           role-session-name: githubactionsprovider-role
-           aws-region: eu-central-1
-           
-       - name: Deploy K8s 
-         uses: aws-actions/run-command@v2
-         with:
-           comment: Pull Docker image on EC2 instance
-           document-name: AWS-RunShellScript
-           instance-id: i-040a92e9ab6973752
-           parameters: |
-             docker pull ewertao/nodejs-hello:latest
-             export HOME=/
-             kubectl apply -f /tmp/deployment.yml
-           region: eu-central-1
+ 	   

@@ -56,9 +56,12 @@ k3d cluster create mycluster
 # Instala o cURL
 yum install curl --skip-broken
 
+##NOVO K3s
+#curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 664
+
 # Baixa a versão estável mais recente do kubectl e o instala
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+sudo install -o root -g root -m 0664 kubectl /usr/local/bin/kubectl
 
 # Cria uma pasta .kube para o usuário ec2-user
 mkdir -p /home/ec2-user/.kube
@@ -72,5 +75,3 @@ cp /.kube/config /home/ec2-user/.kube
 # Copia o arquivo de configuração kubeconfig para o usuário ssm-user
 cp /.kube/config /home/ssm-user/.kube
 
-# Recurso técnico alternativo
-cd / && export HOME=/
