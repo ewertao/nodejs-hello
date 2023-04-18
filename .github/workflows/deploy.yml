@@ -47,7 +47,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: nodejs-hello
-        IMAGE_TAG: $latest
+        IMAGE_TAG: latest
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f ./src/Dockerfile .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker build -t $ECR_REGISTRY/nodejs-hello:latest -f ./src/Dockerfile .
+        docker push $ECR_REGISTRY/nodejs-hello:latest
