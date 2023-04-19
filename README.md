@@ -42,7 +42,7 @@ ECS Fargate requests ECR nodejs-hello image and deploys
 User can access the public IP using the port 8080
 
 
-![Screenshot 2023-04-18 174637](https://user-images.githubusercontent.com/66280558/232989899-c4a940ec-3254-4102-9135-c136f105d99f.png)
+![screenshot-diagram](https://user-images.githubusercontent.com/66280558/233043946-9d32b65b-e247-4090-baf6-2f70478711db.png)
 
 ___
 
