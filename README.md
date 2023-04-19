@@ -44,7 +44,14 @@ User can access the public IP using the port 8080
 
 ![Screenshot 2023-04-18 174637](https://user-images.githubusercontent.com/66280558/232989899-c4a940ec-3254-4102-9135-c136f105d99f.png)
 
+___
 
+## How to
+
+1. Clone the repository to your local machine.
+2. On terraform folder run `terraform init` to download all dependencies and modules.
+3. After download, run a `terraform plan `to check all infrastructure deploy followed by `terraform apply`.
+4. 
 
 ---
 
