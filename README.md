@@ -48,18 +48,27 @@ ___
 
 ## How to
 
+######Prerequisites:
+- Required access to my AWS account.
+- Project-level access to my *nodejs-hello* repository on Github.
+
+######Steps:
+
 1. Clone the repository to your local machine.
 2. On terraform folder run `terraform init` to download all dependencies and modules.
 3. After download, run `terraform plan `to check all infrastructure deploy followed by `terraform apply`.
-4. Move to nodejs-hello folder and run `git push` to start the pipeline on Github.
-
+4. Terraform will create a Repository on ECR and a Fargate Container Cluster on ECS with no image related.
+5. To run deploy pipeline:
+    - A. If files are changed, removed or updated, the pipeline runs automatically **on push**.
+    - B. Manually, if a user with enough project-level privileges clicks on *Actions > Docker CI > Run Workflow.*
+6. The pipeline will test, build and push the image to the ECR Repository and the ECS Cluster will automatically pull the image from the ECR and run a container on Fargate.
 
 ---
 
 ### Credits, Sources and References
 
-***¹ https://www.youtube.com/watch?v=8MlO2oSBdYw&t=1120s***
+*¹ https://youtu.be/8MlO2oSBdYw?t=110*
 
-***² https://registry.terraform.io/modules/terraform-aws-modules/ecr/aws/latest#public-repository***
+*² https://registry.terraform.io/modules/terraform-aws-modules/ecr/aws/latest#public-repository*
 
-***³ https://registry.terraform.io/modules/terraform-aws-modules/ecs/aws/latest#fargate-capacity-providers***
+*³ https://registry.terraform.io/modules/terraform-aws-modules/ecs/aws/latest#fargate-capacity-providers*
