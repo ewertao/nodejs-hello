@@ -37,12 +37,14 @@ Github stores all the code package.
 
 Github has an OIDC Provider that permits it to assume a propre role to execute Github Action pushing images to ECR assuming a Role and not a user profile.
 
-ECS Fargate requests ECR nodejs-hello image and deploys
+ECS Fargate requests ECR nodejs-hello image and deploys.
+
+The health check are constantly made by ECS cluster and the monitoring by Cloudwatch
 
 User can access the public IP using the port 8080
 
 
-![screenshot-diagram](https://user-images.githubusercontent.com/66280558/233043946-9d32b65b-e247-4090-baf6-2f70478711db.png)
+![screenshot-diagram](https://raw.githubusercontent.com/ewertao/nodejs-hello/main/screenshots/screenshot-diagram.png)
 
 ___
 
