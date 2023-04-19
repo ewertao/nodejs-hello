@@ -1,9 +1,9 @@
-## NODEJS-HELLO
+# NODEJS-HELLO
 
 Hello World.
 ___
 
-### Description
+## Description
 
 This is a containerized "Hello World" application written in Node.js based on a Youtube¹ video, running on a ECS (Elastic Container Service). 
 By implementing Infrastructure as a Code (IaaC) via Terraform Modules² ³ and the Application following the CI/CD pipeline via Github.
@@ -11,25 +11,25 @@ By implementing Infrastructure as a Code (IaaC) via Terraform Modules² ³ and t
 
 ___
 
-### Main Technologies
+## Main Technologies
 
-##### Code
+#### Code
 
 ***Node.js*** is the programming language used to develop the system
 
 
-##### Build and Repository
+#### Build and Repository
 
 The application build and its storage is done by ***Github***
 Infrastructure as a Code is made by ***Terraform***
 
-##### Servers
+#### Servers
 
 The application image runs on ***Docker Containers*** orchestrated by a ***AWS ECS Fargate***
 
 ___
 
-### Architecture
+## Architecture
 
 ECR and ECS Fargate needs to be create first by code.
 
@@ -48,7 +48,7 @@ User can access the public IP using the port 8080
 
 ---
 
-#### Credits, Sources and References
+### Credits, Sources and References
 
 ***¹ https://www.youtube.com/watch?v=8MlO2oSBdYw&t=1120s***
 
