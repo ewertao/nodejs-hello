@@ -48,11 +48,12 @@ ___
 
 ## How to
 
-1. Clone the repository to your local machine.
-2. On terraform folder run `terraform init` to download all dependencies and modules.
-3. After download, run `terraform plan `to check all infrastructure deploy followed by `terraform apply`.
-4. Move to nodejs-hello folder and run `git push` to start the pipeline on Github.
-
+**1**. Clone the repository to your local machine.
+**2**. On terraform folder run `terraform init` to download all dependencies and modules.
+**3**. After download, run `terraform plan `to check all infrastructure deploy followed by `terraform apply`.
+**4**. Terraform will create a Repository on ECR and a Fargate Container Cluster on ECS with no image related.
+**5**. Move to *nodejs-hello* folder and run `git push` to start the pipeline on Github.
+**6**. The pipeline will test, build and push the image to the ECR Repository and the ECS Cluster will automatically pull the image from the ECR and run a container on Fargate.
 
 ---
 
