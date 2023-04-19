@@ -6,7 +6,7 @@ ___
 ## Description
 
 This is a containerized "Hello World" application written in Node.js based on a Youtube¹ video, running on a ECS (Elastic Container Service). 
-By implementing Infrastructure as a Code (IaaC) via Terraform Modules² ³ and the Application following the CI/CD pipeline via Github.
+By implementing Infrastructure as Code (IaC) via Terraform Modules² ³ and the Application following the CI/CD pipeline via Github.
 
 
 ___
