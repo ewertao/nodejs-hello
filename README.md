@@ -50,8 +50,9 @@ ___
 
 1. Clone the repository to your local machine.
 2. On terraform folder run `terraform init` to download all dependencies and modules.
-3. After download, run a `terraform plan `to check all infrastructure deploy followed by `terraform apply`.
-4. 
+3. After download, run `terraform plan `to check all infrastructure deploy followed by `terraform apply`.
+4. Move to nodejs-hello folder and run `git push` to start the pipeline on Github.
+
 
 ---
 

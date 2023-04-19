@@ -1,7 +1,7 @@
 module "ecs" {
   source = "terraform-aws-modules/ecs/aws"
 
-  cluster_name = "nodejs-hello-cluster"
+  cluster_name = "nodejs-hello-1"
 
   cluster_configuration = {
     execute_command_configuration = {
@@ -27,12 +27,12 @@ module "ecs" {
 }
 
 resource "aws_cloudwatch_log_group" "this" {
-  name_prefix       = "nodejs-hello-logs"
+  name_prefix       = "nodejs-hello-1logs"
   retention_in_days = 1
 }
 
 resource "aws_ecs_task_definition" "this" {
-  family                   = "nodejs-hello-tasks"
+  family                   = "nodejs-hello-1tasks"
   requires_compatibilities = ["FARGATE"]
   cpu                      = 256
   memory                   = 512
@@ -44,7 +44,7 @@ resource "aws_ecs_task_definition" "this" {
   container_definitions = <<EOF
 [
   {
-    "name": "nodejs-hello-cont",
+    "name": "nodejs-hello-1cont",
     "image": "public.ecr.aws/d0y1a6a0/nodejs-hello",
     "portMappings": [
         {
@@ -68,7 +68,7 @@ EOF
 }
 
 resource "aws_ecs_service" "this" {
-  name            = "nodejs-hello-taskdef"
+  name            = "nodejs-hello-1taskdef"
   cluster         = module.ecs.cluster_id
   task_definition = aws_ecs_task_definition.this.arn
   launch_type     = "FARGATE"
